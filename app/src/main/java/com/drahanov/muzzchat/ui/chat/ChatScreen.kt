@@ -56,7 +56,7 @@ fun ChatScreen(
 }
 
 @Composable
-private fun ChatContent(
+internal fun ChatContent(
     state: ChatUiState,
     input: String,
     onInputChange: (String) -> Unit,
@@ -162,7 +162,7 @@ private fun ChatContentEmptyPreview() {
 
 private val PreviewStart: Instant = Instant.parse("2026-09-10T11:59:00Z")
 
-private val PreviewMessages = listOf(
+internal val PreviewMessages = listOf(
     Message(1, ChatUser.SARAH.id, "Wowsa sounds fun", PreviewStart - Duration.ofHours(2)),
     Message(2, ChatUser.SARAH.id, "Yeh for sure that works. What time do you think?", PreviewStart),
     Message(
