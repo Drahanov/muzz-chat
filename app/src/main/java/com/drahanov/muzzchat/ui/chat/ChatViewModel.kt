@@ -29,7 +29,7 @@ class ChatViewModel @Inject constructor(
     val uiState: StateFlow<ChatUiState> =
         combine(repository.observeMessages(), currentUser) { messages, user ->
             ChatUiState(items = mapper.map(messages, user.id), currentUser = user)
-        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), ChatUiState())
+        }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5_000), ChatUiState(isLoading = true))
 
     var input by mutableStateOf("")
         private set

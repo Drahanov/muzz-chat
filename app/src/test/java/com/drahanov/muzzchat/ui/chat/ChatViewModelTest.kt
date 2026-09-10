@@ -40,7 +40,7 @@ class ChatViewModelTest {
     @Test
     fun `sending adds a message and clears the input`() = runTest {
         viewModel.uiState.test {
-            assertTrue(awaitItem().items.isEmpty())
+            skipItems(1)
 
             viewModel.type("Hi")
 
@@ -48,6 +48,17 @@ class ChatViewModelTest {
             assertEquals("Hi", row.message.text)
             assertTrue(row.isMine)
             assertEquals("", viewModel.input)
+        }
+    }
+
+    @Test
+    fun `starts loading, then shows an empty chat`() = runTest {
+        assertTrue(viewModel.uiState.value.isLoading)
+
+        viewModel.uiState.test {
+            val loaded = awaitItem()
+            assertFalse(loaded.isLoading)
+            assertTrue(loaded.items.isEmpty())
         }
     }
 

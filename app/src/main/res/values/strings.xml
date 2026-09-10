@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">MuzzChat</string>
+    <string name="send">Send</string>
+    <string name="back">Back</string>
+    <string name="more_options">More options</string>
+    <string name="switch_to">Switch to %1$s</string>
+    <string name="empty_chat_title">Say hi to %1$s 👋</string>
+    <string name="empty_chat_subtitle">No messages yet. Send the first one below.</string>
+    <string name="message_hint">Message</string>
+    <string name="leave_chat_title">Leave chat?</string>
+    <string name="leave_chat_message">This will close the app. Your messages are saved.</string>
+    <string name="leave">Leave</string>
+    <string name="cancel">Cancel</string>
 </resources>

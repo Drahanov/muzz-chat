@@ -7,7 +7,8 @@ sealed interface ChatItem {
 
     data class SectionHeader(
         val anchorMessageId: Long,
-        val text: String,
+        val day: String,
+        val time: String,
     ) : ChatItem {
         override val key = "header_$anchorMessageId"
     }

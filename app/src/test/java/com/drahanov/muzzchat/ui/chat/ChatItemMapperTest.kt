@@ -32,7 +32,7 @@ class ChatItemMapperTest {
     fun `first message gets a section header`() {
         val items = map(message(1))
 
-        assertEquals(ChatItem.SectionHeader(1, "Thursday 11:59"), items.first())
+        assertEquals(ChatItem.SectionHeader(1, "Thursday", "11:59"), items.first())
     }
 
     @Test
@@ -49,9 +49,9 @@ class ChatItemMapperTest {
 
         assertEquals(
             listOf(
-                ChatItem.SectionHeader(1, "Thursday 11:59"),
+                ChatItem.SectionHeader(1, "Thursday", "11:59"),
                 ChatItem.MessageRow(first, isMine = true, isGroupedWithNext = false),
-                ChatItem.SectionHeader(2, "Thursday 12:59"),
+                ChatItem.SectionHeader(2, "Thursday", "12:59"),
                 ChatItem.MessageRow(second, isMine = true, isGroupedWithNext = false),
             ),
             map(first, second),

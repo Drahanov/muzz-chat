@@ -12,7 +12,8 @@ class ChatItemMapper(zoneId: ZoneId, locale: Locale) {
     @Inject
     constructor() : this(ZoneId.systemDefault(), Locale.getDefault())
 
-    private val headerFormatter = DateTimeFormatter.ofPattern(TIME_PATTERN, locale).withZone(zoneId)
+    private val dayFormatter = DateTimeFormatter.ofPattern(DAY_PATTERN, locale).withZone(zoneId)
+    private val timeFormatter = DateTimeFormatter.ofPattern(TIME_PATTERN, locale).withZone(zoneId)
 
     fun map(messages: List<Message>, currentUserId: Long): List<ChatItem> = buildList {
         messages.forEachIndexed { i, message ->
@@ -20,7 +21,13 @@ class ChatItemMapper(zoneId: ZoneId, locale: Locale) {
             val next = messages.getOrNull(i + 1)
 
             if (prev == null || gap(prev, message) > SECTION_GAP) {
-                add(ChatItem.SectionHeader(message.id, headerFormatter.format(message.timestamp)))
+                add(
+                    ChatItem.SectionHeader(
+                        anchorMessageId = message.id,
+                        day = dayFormatter.format(message.timestamp),
+                        time = timeFormatter.format(message.timestamp),
+                    )
+                )
             }
             add(
                 ChatItem.MessageRow(
@@ -40,6 +47,7 @@ class ChatItemMapper(zoneId: ZoneId, locale: Locale) {
     private companion object {
         private val SECTION_GAP: Duration = Duration.ofHours(1)
         private val GROUP_GAP: Duration = Duration.ofSeconds(20)
-        private const val TIME_PATTERN: String = "EEEE HH:mm"
+        private const val DAY_PATTERN: String = "EEEE"
+        private const val TIME_PATTERN: String = "HH:mm"
     }
 }
