@@ -73,6 +73,22 @@ fun EmptyChatScreenshot() {
 @PreviewTest
 @Preview(device = "id:pixel_5")
 @Composable
+fun ChatScreenEmptyScreenshot() {
+    MuzzChatTheme {
+        ChatContent(
+            state = ChatUiState(),
+            input = "",
+            onInputChange = {},
+            onSend = {},
+            onSwitchUser = {},
+            onLeave = {},
+        )
+    }
+}
+
+@PreviewTest
+@Preview(device = "id:pixel_5")
+@Composable
 fun ChatScreenScreenshot() {
     MuzzChatTheme {
         ChatContent(
